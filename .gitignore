@@ -1,0 +1,6 @@
+virtual/
+
+*.pyc
+user_management/db.sqlite3
+user_management/secret_key.txt
+user_management/user_management/local_settings.py

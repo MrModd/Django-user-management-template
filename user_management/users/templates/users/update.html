@@ -1,0 +1,69 @@
+{% extends 'users/base_template.html' %}
+
+{% block description %}Administration panel{% endblock %}
+
+{% block title %}Administration panel{% endblock %}
+
+{% block content %}
+    
+	<form class="form-horizontal" method="post" action="{% url 'users:update' %}">
+		{% csrf_token %}
+		<fieldset>
+			
+		    {% if error_message %}
+		    <h4>{{ error_message }}</h4>
+		    {% endif %}
+			
+		    {% if confirm_message %}
+		    <h4>{{ confirm_message }}</h4>
+		    {% endif %}
+			
+			<!-- Text input-->
+			<div class="form-group">
+			  <label class="col-md-4 control-label" for="username">Username</label>  
+			  <div class="col-md-4">
+			  <input id="username" name="username" type="text" placeholder="username"
+					class="form-control input-md" disabled value="{{ username }}">
+				
+			  </div>
+			</div>
+
+			<!-- Text input-->
+			<div class="form-group">
+			  <label class="col-md-4 control-label" for="email">Email*</label>  
+			  <div class="col-md-4">
+			  <input id="email" name="email" type="email" placeholder="email" class="form-control input-md" required value="{{ email }}">
+				
+			  </div>
+			</div>
+			
+			<!-- Text input-->
+			<div class="form-group">
+			  <label class="col-md-4 control-label" for="firstname">First name</label>  
+			  <div class="col-md-4">
+			  <input id="firstname" name="firstname" type="text" placeholder="first name" class="form-control input-md" maxlength="30" value="{{ firstname }}">
+				
+			  </div>
+			</div>
+			
+			<!-- Text input-->
+			<div class="form-group">
+			  <label class="col-md-4 control-label" for="lastname">Last name</label>  
+			  <div class="col-md-4">
+			  <input id="lastname" name="lastname" type="text" placeholder="last name" class="form-control input-md" maxlength="30" value="{{ lastname }}">
+				
+			  </div>
+			</div>
+			
+			<!-- Button -->
+			<div class="form-group" align="right">
+			  <label class="col-md-4 control-label" for="submit"></label>
+			  <div class="col-md-4">
+				<button id="submit" name="submit" type="submit" class="btn btn-primary">Update</button>
+			  </div>
+			</div>
+
+		</fieldset>
+	</form>
+		
+{% endblock %}

@@ -1,0 +1,102 @@
+{% extends 'users/base_template.html' %}
+
+{% block description %}Administration panel{% endblock %}
+
+{% block title %}Administration panel{% endblock %}
+
+{% block content %}
+    
+    {% if page == '1' %}
+    
+	<form class="form-horizontal" method="post" action="{% url 'users:register' %}">
+		{% csrf_token %}
+		<fieldset>
+			
+		    {% if error_message %}
+		    <h4>{{ error_message }}</h4>
+		    {% endif %}
+			
+			<!-- Form Name -->
+			<legend>Create new user</legend>
+			
+			<!-- Text input-->
+			<div class="form-group">
+			  <label class="col-md-4 control-label" for="newusername">Username*</label>  
+			  <div class="col-md-4">
+			  <input id="newusername" name="newusername" type="text" placeholder="username"
+					class="form-control input-md" pattern="[a-zA-Z@.+-_]*" maxlength="30"
+					required autofocus value="{{ username }}">
+				
+			  </div>
+			</div>
+
+			<!-- Password input-->
+			<div class="form-group">
+			  <label class="col-md-4 control-label" for="newpassword1">Password*</label>
+			  <div class="col-md-4">
+				<input id="newpassword1" name="newpassword1" type="password" placeholder="password" class="form-control input-md" pattern=".{8,}" required>
+				<span class="help-block">Must be at least 8 characters long</span> 
+				
+			  </div>
+			</div>
+
+			<!-- Confirm Password input-->
+			<div class="form-group">
+			  <label class="col-md-4 control-label" for="newpassword2">Confirm Password*</label>
+			  <div class="col-md-4">
+				<input id="newpassword2" name="newpassword2" type="password" placeholder="password" class="form-control input-md" required>
+				
+			  </div>
+			</div>
+
+			<!-- Text input-->
+			<div class="form-group">
+			  <label class="col-md-4 control-label" for="newemail">Email*</label>  
+			  <div class="col-md-4">
+			  <input id="newemail" name="newemail" type="email" placeholder="email" class="form-control input-md" required value="{{ email }}">
+				
+			  </div>
+			</div>
+			
+			<!-- Text input-->
+			<div class="form-group">
+			  <label class="col-md-4 control-label" for="newfirstname">First name</label>  
+			  <div class="col-md-4">
+			  <input id="newfirstname" name="newfirstname" type="text" placeholder="name" class="form-control input-md" maxlength="30" value="{{ firstname }}">
+				
+			  </div>
+			</div>
+			
+			<!-- Text input-->
+			<div class="form-group">
+			  <label class="col-md-4 control-label" for="newlastname">Last name</label>  
+			  <div class="col-md-4">
+			  <input id="newlastname" name="newlastname" type="text" placeholder="surname" class="form-control input-md" maxlength="30" value="{{ lastname }}">
+				
+			  </div>
+			</div>
+			
+			<!-- Button -->
+			<div class="form-group" align="right">
+			  <label class="col-md-4 control-label" for="submit"></label>
+			  <div class="col-md-4">
+				<button id="submit" name="submit" type="submit" class="btn btn-primary">Create</button>
+			  </div>
+			</div>
+
+		</fieldset>
+	</form>
+	
+	{% elif page == '2' %}
+		
+		<h2>
+			Check your inbox!
+		</h2>
+		<h4>
+			An activation link was sent to your email.<br />
+			If you encounter any problem visit <a href="{% url 'users:activation' %}">this</a> page.
+		</h4>
+		
+	{% endif %}
+		
+{% endblock %}

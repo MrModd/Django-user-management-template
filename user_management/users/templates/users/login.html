@@ -1,0 +1,62 @@
+{% extends 'users/base_template.html' %}
+
+{% block description %}Administration panel{% endblock %}
+
+{% block title %}Login page{% endblock %}
+
+{% block content %}
+
+		<form class="form-horizontal" method="post" action="{% url 'users:login' %}">
+			{% csrf_token %}
+			<fieldset>
+
+			<!-- Form Name -->
+			<legend>Please Log-in</legend>
+			
+		    {% if error_message %}
+		    <h4>{{ error_message }}</h4>
+		    {% endif %}
+			
+		    {% if confirm_message %}
+		    <h4>{{ confirm_message }}</h4>
+		    {% endif %}
+
+			<!-- Text input-->
+			<div class="form-group">
+			  <label class="col-md-4 control-label" for="username">Username*</label>  
+			  <div class="col-md-4">
+			  <input id="username" name="username" type="text" placeholder="Username"
+					class="form-control input-md" pattern="[a-zA-Z@.+-_]*" maxlength="30"
+					required {% if not username %}autofocus{% endif %} value="{{ username }}">
+				
+			  </div>
+			</div>
+
+			<!-- Password input-->
+			<div class="form-group">
+			  <label class="col-md-4 control-label" for="password">Password*</label>
+			  <div class="col-md-4">
+				<input id="password" name="password" type="password" placeholder="Password"
+					class="form-control input-md" required {% if username %}autofocus{% endif %}>
+				
+			  </div>
+			</div>
+
+			<!-- Button -->
+			<div class="form-group" align="right">
+			  <label class="col-md-4 control-label" for="submit"></label>
+			  <div class="col-md-4">
+				<a href="{% url 'users:register' %}">Register</a> &nbsp;
+				<button id="submit" name="submit" class="btn btn-primary" type="submit">Log-in</button>
+			  </div>
+			</div>
+			
+			<input type="hidden" id="next" name="next" value="{{ next }}" />
+
+			</fieldset>
+		</form>
+		<p><a href="{% url 'users:resetpassword' %}">Forgot password?</a></p>
+		<p><a href="{% url 'users:activation' %}">Resend activation link</a></p>
+
+
+{% endblock %}

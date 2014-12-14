@@ -1,0 +1,44 @@
+{% extends 'users/base_template.html' %}
+
+{% block description %}Administration panel{% endblock %}
+
+{% block title %}Administration panel{% endblock %}
+
+{% block content %}
+    
+	<form class="form-horizontal" method="post" action="{% url 'users:activation' %}">
+		{% csrf_token %}
+		<fieldset>
+			
+			<!-- Form Name -->
+			<legend>Account activation</legend>
+			
+		    {% if error_message %}
+		    <h4>{{ error_message }}</h4>
+		    {% endif %}
+			
+		    {% if confirm_message %}
+		    <h4>{{ confirm_message }}</h4>
+		    {% endif %}
+		    
+			<!-- Text input-->
+			<div class="form-group">
+			  <label class="col-md-4 control-label" for="email">Resend email</label>  
+			  <div class="col-md-4">
+			  <input id="email" name="email" type="email" placeholder="email" class="form-control input-md" required>
+				
+			  </div>
+			</div>
+			
+			<!-- Button -->
+			<div class="form-group" align="right">
+			  <label class="col-md-4 control-label" for="submit"></label>
+			  <div class="col-md-4">
+				<button id="submit" name="submit" type="submit" class="btn btn-primary">Send</button>
+			  </div>
+			</div>
+
+		</fieldset>
+	</form>
+		
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'users/base_template.html' %}
+
+{% block description %}Administration panel{% endblock %}
+
+{% block title %}Login page{% endblock %}
+
+{% block content %}
+
+		<form class="form-horizontal" method="post" action="{% url 'users:delete' %}">
+			{% csrf_token %}
+			<fieldset>
+
+			<!-- Form Name -->
+			<legend>Delete account</legend>
+			
+		    {% if error_message %}
+		    <h4>{{ error_message }}</h4>
+		    {% endif %}
+			
+		    {% if confirm_message %}
+		    <h4>{{ confirm_message }}</h4>
+		    {% endif %}
+
+{% if user.is_superuser %}
+			<h4>You can't delete your account, you are a superuser!</h4>
+{% else %}
+			<!-- Password input-->
+			<div class="form-group">
+			  <label class="col-md-4 control-label" for="password">Password*</label>
+			  <div class="col-md-4">
+				<input id="password" name="password" type="password" placeholder="Password"
+					class="form-control input-md" required autofocus>
+				
+			  </div>
+			</div>
+
+			<!-- Button -->
+			<div class="form-group" align="right">
+			  <label class="col-md-4 control-label" for="submit"></label>
+			  <div class="col-md-4">
+				<button id="submit" name="submit" class="btn btn-danger" type="submit">Delete</button>
+			  </div>
+			</div>
+{% endif %}
+
+			</fieldset>
+		</form>
+
+
+{% endblock %}

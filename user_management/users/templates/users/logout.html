@@ -1,0 +1,12 @@
+{% extends 'users/base_template.html' %}
+
+{% block description %}Administration panel{% endblock %}
+
+{% block meta %}<meta http-equiv="refresh" content="5; url={% url 'users:index' %}" />{% endblock %}
+
+{% block title %}Login page{% endblock %}
+
+{% block content %}
+        <h1>You are now logged out.</h1>
+        <h4>You will be redirect within 5 seconds.<br /><a href="{% url 'users:index' %}">Click here</a> to go now.</h4>
+{% endblock %}
