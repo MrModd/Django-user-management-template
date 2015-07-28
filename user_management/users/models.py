@@ -9,14 +9,14 @@ from rest_framework.authtoken.models import Token
 
 # Create your models here.
 class ActivationLink(models.Model):
-	user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, unique=True)
+	user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, primary_key=True)
 	link = models.CharField(max_length=50)
 	
 	def __unicode__(self):  # Python 3: def __str__(self):
 		return 'Activation link for ' + str(self.user)
 
 class PasswordResetLink(models.Model):
-	user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, unique=True)
+	user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, primary_key=True)
 	link = models.CharField(max_length=50)
 	
 	def __unicode__(self):  # Python 3: def __str__(self):

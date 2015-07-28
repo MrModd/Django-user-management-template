@@ -5,7 +5,7 @@ PORT="8000"
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-source $DIR/environment 2>/dev/null
+source $DIR/environment 2> /dev/null
 if [ $? != "0" ] ; then
 	echo -e "Cannot import environment path" >&2
 	exit 1
@@ -18,7 +18,7 @@ if [ $? != "0" ] ; then
 fi
 
 echo "Starting Django..."
-python $DJANGO_PROJ/manage.py runserver $ADDRESS:$PORT
+python3 $DJANGO_PROJ/manage.py runserver $ADDRESS:$PORT
 
 
 
