@@ -70,7 +70,7 @@ fi
 
 # Requirements for Django
 echo -ne "Installing Django... "
-pip install Django > /dev/null
+pip3 install Django > /dev/null
 if [ $? != "0" ] ; then
 	echo -e "FAILED!\n\nCannot install Django." >&2
 	exit 1
@@ -79,19 +79,19 @@ echo "OK!"
 
 # Requirements for Django REST framework
 echo -ne "Installing Django REST framework."
-pip install djangorestframework > /dev/null
+pip3 install djangorestframework > /dev/null
 if [ $? != "0" ] ; then
 	echo -e "FAILED!\n\nCannot install Django REST framework." >&2
 	exit 1
 fi
 echo -n "."
-pip install markdown > /dev/null       # Markdown support for the browsable API.
+pip3 install markdown > /dev/null       # Markdown support for the browsable API.
 if [ $? != "0" ] ; then
 	echo -e "FAILED!\n\nCannot install Django REST framework." >&2
 	exit 1
 fi
 echo -n ". "
-pip install django-filter > /dev/null  # Filtering support
+pip3 install django-filter > /dev/null  # Filtering support
 if [ $? != "0" ] ; then
 	echo -e "FAILED!\n\nCannot install Django REST framework." >&2
 	exit 1
