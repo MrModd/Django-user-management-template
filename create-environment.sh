@@ -30,13 +30,6 @@ if [ ! `command -v virtualenv 2> /dev/null` ] ; then
 fi
 echo "OK!"
 
-echo -n "Checking pip3... "
-if [ ! `command -v pip3 2> /dev/null` ] ; then
-	echo -e "FAILED!\n\nPlease install pip3 and retry."
-	exit 1
-fi
-echo "OK!"
-
 echo -n "Checking environment path... "
 if [[ $VIRT_ENV =~ ^.*[[:space:]].*$ ]] ; then
 	echo -e "FAILED!\n\nENVIRONMENT path must not contain spaces" >&2
